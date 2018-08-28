@@ -3,7 +3,7 @@
     background-color: whitesmoke;
 }
 
-#main {
+.allImagesContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -12,7 +12,7 @@
     max-height: 100%;
 }
 
-div.imagesContainer {
+div.imageContainer {
     border: black solid 2px;
     border-radius: 10px;
     margin-top: 10px;
@@ -27,7 +27,7 @@ img.images {
     border: black 1px solid;
 }
 
-div.imagesContainer p {
+div.imageContainer p {
     font-size: 20px;
     text-align: center;
 }

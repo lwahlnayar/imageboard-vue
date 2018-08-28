@@ -6,10 +6,20 @@
 </head>
 <body>
 <div id="main">
-  <div class="imagesContainer" v-for="eachImage in imageData"><img class="images" v-bind:src="eachImage.url" :alt="eachImage.title">
-    <p>{{eachImage.title}}</p>
+  <form class="inputForm">
+    <input v-model="form.title" type="text" name="title" placeholder="title">
+    <input v-model="form.description" type="text" name="description" placeholder="description">
+    <input v-model="form.userName" type="text" name="userName" placeholder="name">
+    <input type="file" accept="image/*">
+    <button v-on:click="uploadImage" name="button">Upload</button>
+  </form>
+  <section class="allImagesContainer">
+    <div class="imageContainer" v-for="eachImage in imageData"><img class="images" v-bind:src="eachImage.url" :alt="eachImage.title">
+      <p>{{eachImage.title}}</p>
+    </div>
   </div>
-</div>
+  </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js" charset="utf-8"></script>
