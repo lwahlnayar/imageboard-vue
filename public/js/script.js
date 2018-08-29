@@ -32,6 +32,9 @@
                     app.imageData.unshift(res.data.imageData); //RESPONSE
                 });
             }, //closes uploadImage method
+            exitModal: function() {
+                this.imageId = null;
+            },
             getImageId: function(id) {
                 console.log(id);
                 app.imageId = id;
@@ -54,6 +57,11 @@
                 console.log(res.data);
                 self.imageData = res.data;
             });
+        },
+        methods: {
+            overlayClick: function() {
+                return this.$emit("clickedoutside");
+            }
         },
         template: "#modalSelector",
         props: ["id"]

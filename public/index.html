@@ -20,13 +20,13 @@
     </div>
   </section>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->
-  <image-modal v-if="imageId" v-bind:id="imageId"></image-modal>
+  <image-modal v-if="imageId" v-bind:id="imageId" v-on:clickedoutside="exitModal"></image-modal>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->
   </div>
   <!-- //////////////MAIN VUE INSTANCE///////////////// -->
     <script id="modalSelector" type="text/x-template">
-      <div class="modalOverlay">
-        <div class="modalWindow">
+      <div v-on:click="overlayClick" class="modalOverlay">
+        <div v-on:click.stop class="modalWindow">
           <div class="imageDiv">
             <img class="modalImage" v-bind:src="imageData.url" v-bind:alt="imageData.title">
           </div>

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS images;
 
 CREATE TABLE images(
@@ -7,6 +8,14 @@ CREATE TABLE images(
     title VARCHAR(255) NOT NULL,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE comments(
+  id SERIAL PRIMARY KEY,
+  image_id INTEGER REFERENCES images(id) NOT NULL,
+  username VARCHAR(255) NOT NULL,
+  comment VARCHAR(600) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO images (url, username, title, description) VALUES (
