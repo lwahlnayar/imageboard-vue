@@ -9,6 +9,14 @@ module.exports.getImagesData = function() {
     });
 };
 
+module.exports.getImageData = function(id) {
+    return db
+        .query(`SELECT * FROM images WHERE id = $1;`, [id])
+        .then(results => {
+            return results.rows;
+        });
+};
+
 module.exports.saveOnlineImages = function(url, username, title, description) {
     return db
         .query(

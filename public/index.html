@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
+  <!-- //////////////MAIN VUE INSTANCE///////////////// -->
 <div id="main">
   <form class="inputForm">
     <input v-model="form.title" type="text" name="title" placeholder="title">
@@ -14,11 +15,28 @@
     <button v-on:click="uploadImage" name="button">Upload</button>
   </form>
   <section class="allImagesContainer">
-    <div class="imageContainer" v-for="eachImage in imageData"><img class="images" v-bind:src="eachImage.url" :alt="eachImage.title">
+    <div v-on:click="getImageId(eachImage.id)" class="imageContainer" v-for="eachImage in imageData"><img class="images" v-bind:src="eachImage.url" :alt="eachImage.title">
       <p>{{eachImage.title}}</p>
     </div>
-  </div>
   </section>
+  <!-- __________ IMAGE MODAL COMPONENT __________ -->
+  <image-modal v-if="imageId" v-bind:id="imageId"></image-modal>
+  <!-- __________ IMAGE MODAL COMPONENT __________ -->
+  </div>
+  <!-- //////////////MAIN VUE INSTANCE///////////////// -->
+    <script id="modalSelector" type="text/x-template">
+      <div class="modalOverlay">
+        <div class="modalWindow">
+          <div class="imageDiv">
+            <img class="modalImage" v-bind:src="imageData.url" v-bind:alt="imageData.title">
+          </div>
+          <h1 id="modalTitle">{{imageData.title}}</h1>
+          <h2 id="modalDescription">{{imageData.description}}</h2>
+          <p id="modalDate">{{imageData.created_at}}</p>
+          <h3>Add a Comment!</h3>
+        </div>
+      </div>
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>

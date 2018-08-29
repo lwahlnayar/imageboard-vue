@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
 }
 
 .allImagesContainer {
@@ -21,7 +23,7 @@ div.imageContainer {
 img.images {
     width: 400px;
     height: 400px;
-    object-fit: cover;
+    /*     object-fit: contain; */
     max-width: 400px;
     max-height: 300px;
     border: black 1px solid;
@@ -30,4 +32,52 @@ img.images {
 div.imageContainer p {
     font-size: 20px;
     text-align: center;
+}
+
+div.modalOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 206, 209, 0.1);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+}
+
+div.modalWindow {
+    width: 60%;
+    height: 80%;
+    border: black solid 1px;
+    border-radius: 15px;
+}
+
+.imageDiv {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.modalImage {
+    max-width: 100%;
+    max-height: 300px;
+}
+
+h1#modalTitle {
+    text-align: center;
+    margin-top: 3px;
+}
+
+h2#modalDescription {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 3px;
+}
+
+p#modalDate {
+    text-align: center;
+    font-size: 8px;
+    font-style: italic;
+    margin-top: 3px;
 }
