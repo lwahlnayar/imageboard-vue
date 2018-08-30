@@ -6,7 +6,8 @@ const {
     saveOnlineImages,
     getImageData,
     saveComments,
-    getComments
+    getComments,
+    lastImage
 } = require("./queryFunctions");
 const { uploadS3 } = require("./s3");
 const multer = require("multer");
@@ -47,15 +48,25 @@ app.use(express.static("./public"));
 app.use(express.static("./css"));
 
 app.get("/imagesdata", (req, res) => {
-    getImagesData().then(data => {
-        res.json(data);
+    Promise.all([getImagesData(), lastImage()]).then(([data, lastImage]) => {
+        console.log(lastImage[0].id); //id
+        res.json({
+            queryData: data,
+            lastId: lastImage[0].id
+        });
     });
 });
 
 app.get("/imagesdata/:lastImageId", (req, res) => {
-    getMoreImages(req.params.lastImageId).then(moreImages => {
-        res.json(moreImages);
-    });
+    Promise.all([getMoreImages(req.params.lastImageId), lastImage()]).then(
+        ([moreImages, lastImage]) => {
+            console.log(lastImage[0].id); //id
+            res.json({
+                queryData: moreImages,
+                lastId: lastImage[0].id
+            });
+        }
+    );
 });
 
 app.post("/uploads", uploader.single("file"), uploadS3, (req, res) => {

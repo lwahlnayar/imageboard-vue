@@ -60,3 +60,11 @@ module.exports.getComments = function(image_id) {
             return results.rows;
         });
 };
+
+module.exports.lastImage = function() {
+    return db
+        .query(`SELECT id, title FROM images ORDER BY created_at ASC LIMIT 1;`)
+        .then(results => {
+            return results.rows;
+        });
+};

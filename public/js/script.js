@@ -9,16 +9,35 @@
                 userName: ""
             },
             imageId: null,
-            moreButton: true
+            moreButton: false
         },
         mounted: function() {
             console.log("MOUNTED!");
+            // console.log("lastvisible id", lastImageId);
             axios.get("/imagesdata").then(function(dataRes) {
-                console.log(dataRes.data);
-                app.imageData = dataRes.data;
+                app.imageData = dataRes.data.queryData;
+                var lastImageId = app.imageData[app.imageData.length - 1].id;
+                if (lastImageId != dataRes.data.lastId) {
+                    app.moreButton = true;
+                }
+                //small bug: uploading image wont make more button appear
             });
         },
         methods: {
+            getMoreImages: function() {
+                var lastImageId = this.imageData[this.imageData.length - 1].id;
+                console.log("moreButton pressed! lastimgId", lastImageId);
+                axios.get("/imagesdata/" + lastImageId).then(function(res) {
+                    app.imageData = app.imageData.concat(res.data.queryData);
+                    var lastImageId =
+                        app.imageData[app.imageData.length - 1].id;
+                    if (lastImageId != res.data.lastId) {
+                        app.moreButton = true;
+                    } else {
+                        app.moreButton = false;
+                    }
+                });
+            },
             uploadImage: function(e) {
                 e.preventDefault();
                 var file = $('input[type="file"]').get(0).files[0];
@@ -39,13 +58,6 @@
             getImageId: function(id) {
                 console.log(id);
                 app.imageId = id;
-            },
-            getMoreImages: function() {
-                var lastImageId = this.imageData[this.imageData.length - 1].id;
-                console.log("moreButton pressed! lastimgId", lastImageId);
-                axios.get("/imagesdata/" + lastImageId).then(function(res) {
-                    app.imageData = app.imageData.concat(res.data);
-                });
             }
         } //closes all methods
     }); //closes main Vue instance
