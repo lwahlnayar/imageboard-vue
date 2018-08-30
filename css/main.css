@@ -18,6 +18,7 @@ div.imageContainer {
     border: black solid 2px;
     border-radius: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 img.images {
@@ -33,6 +34,25 @@ div.imageContainer p {
     font-size: 20px;
     text-align: center;
 }
+
+#moreButton {
+    position: relative;
+    margin: 0 auto;
+    background: gray;
+    color: white;
+    font-size: 20px;
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+    padding-top: 8px;
+    text-align: center;
+}
+
+#moreButton:hover {
+    cursor: pointer;
+}
+
+/* MODAL WINDOW BELOW */
 
 div.modalOverlay {
     display: flex;

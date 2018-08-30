@@ -8,7 +8,8 @@
                 description: "",
                 userName: ""
             },
-            imageId: null
+            imageId: null,
+            moreButton: true
         },
         mounted: function() {
             console.log("MOUNTED!");
@@ -38,6 +39,13 @@
             getImageId: function(id) {
                 console.log(id);
                 app.imageId = id;
+            },
+            getMoreImages: function() {
+                var lastImageId = this.imageData[this.imageData.length - 1].id;
+                console.log("moreButton pressed! lastimgId", lastImageId);
+                axios.get("/imagesdata/" + lastImageId).then(function(res) {
+                    app.imageData = app.imageData.concat(res.data);
+                });
             }
         } //closes all methods
     }); //closes main Vue instance

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const {
     getImagesData,
+    getMoreImages,
     saveOnlineImages,
     getImageData,
     saveComments,
@@ -51,9 +52,13 @@ app.get("/imagesdata", (req, res) => {
     });
 });
 
+app.get("/imagesdata/:lastImageId", (req, res) => {
+    getMoreImages(req.params.lastImageId).then(moreImages => {
+        res.json(moreImages);
+    });
+});
+
 app.post("/uploads", uploader.single("file"), uploadS3, (req, res) => {
-    console.log("REQ BODYYY------------", req.body);
-    console.log("REQ FIIIIILE----------", req.file);
     if (req.file) {
         saveOnlineImages(
             s3Url + req.file.filename,
@@ -82,7 +87,7 @@ app.get("/all-image-comments/:id", (req, res) => {
     // console.log("REQ PARAMS ID", req.params.id);
     getComments(req.params.id)
         .then(imageComments => {
-            console.log("GET RESPONSE WITH COMMENTS:", imageComments);
+            // console.log("GET RESPONSE WITH COMMENTS:", imageComments);
             res.json(imageComments); //sends pure object with all comments data
         })
         .catch(e => {
@@ -93,7 +98,7 @@ app.get("/all-image-comments/:id", (req, res) => {
 app.post("/post-comments", (req, res) => {
     saveComments(req.body.image_id, req.body.userName, req.body.comment).then(
         commentData => {
-            console.log("RETURNED ID VALUE", commentData[0]);
+            // console.log("RETURNED ID VALUE", commentData[0]);
             res.json(commentData[0]);
         }
     );
