@@ -3,13 +3,16 @@ const app = express();
 const {
     getImagesData,
     saveOnlineImages,
-    getImageData
+    getImageData,
+    saveComments,
+    getComments
 } = require("./queryFunctions");
 const { uploadS3 } = require("./s3");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const { s3Url } = require("./config");
 const path = require("path");
+app.use(require("body-parser").json());
 
 app.use(
     require("body-parser").urlencoded({
@@ -70,9 +73,30 @@ app.post("/uploads", uploader.single("file"), uploadS3, (req, res) => {
 
 app.get("/clickedimage/:id", (req, res) => {
     getImageData(req.params.id).then(imageId => {
-        console.log("GET RESPONSE WITH IMG DATA:", imageId);
+        // console.log("GET RESPONSE WITH IMG DATA:", imageId);
         res.json(imageId[0]); //sends pure object with all image data
     });
+});
+
+app.get("/all-image-comments/:id", (req, res) => {
+    // console.log("REQ PARAMS ID", req.params.id);
+    getComments(req.params.id)
+        .then(imageComments => {
+            console.log("GET RESPONSE WITH COMMENTS:", imageComments);
+            res.json(imageComments); //sends pure object with all comments data
+        })
+        .catch(e => {
+            console.log("ERROR--->", e);
+        });
+});
+
+app.post("/post-comments", (req, res) => {
+    saveComments(req.body.image_id, req.body.userName, req.body.comment).then(
+        commentData => {
+            console.log("RETURNED ID VALUE", commentData[0]);
+            res.json(commentData[0]);
+        }
+    );
 });
 
 app.listen(8080, () => console.log("Server is listening: "));

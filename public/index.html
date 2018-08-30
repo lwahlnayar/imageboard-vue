@@ -23,8 +23,10 @@
   <image-modal v-if="imageId" v-bind:id="imageId" v-on:clickedoutside="exitModal"></image-modal>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->
   </div>
-  <!-- //////////////MAIN VUE INSTANCE///////////////// -->
-    <script id="modalSelector" type="text/x-template">
+
+  <!-- //////////////SCRIPT TEMPLATES BELOW///////////////// -->
+
+    <script id="modalLayout" type="text/x-template">
       <div v-on:click="overlayClick" class="modalOverlay">
         <div v-on:click.stop class="modalWindow">
           <div class="imageDiv">
@@ -34,9 +36,29 @@
           <h2 id="modalDescription">{{imageData.description}}</h2>
           <p id="modalDate">{{imageData.created_at}}</p>
           <h3>Add a Comment!</h3>
+          <!-- __________ COMMENT MODAL COMPONENT __________ -->
+          <comment-component v-bind:id="id"></comment-component>
+          <!-- __________ COMMENT MODAL COMPONENT __________ -->
         </div>
       </div>
     </script>
+
+    <script id="commentsLayout" type="text/x-template">
+      <form class="commentForm">
+        <input v-model="commentForm.comment" type="text" name="description" placeholder="comment">
+        <input v-model="commentForm.userName" type="text" name="userName" placeholder="name">
+        <button v-on:click="uploadComments" name="button">Post</button>
+        <section class="commentsContainer">
+          <!-- <p>{{commentResponse}}</p> -->
+          <div class="commentDiv" v-for="eachComment in commentResponse">
+            <p><strong>{{eachComment.username}}</strong> <span class="timeOfPost">{{eachComment.created_at}}</span></p>
+            <p>{{eachComment.comment}}</p>
+          </div>
+        </section>
+      </form>
+
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>

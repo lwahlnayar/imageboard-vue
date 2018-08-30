@@ -42,13 +42,12 @@
         } //closes all methods
     }); //closes main Vue instance
 
-    ////////////////////////////////////COMPONENT BELOW/////////////////////////////
+    ////////////////////////////////////COMPONENTS BELOW/////////////////////////////
 
     Vue.component("image-modal", {
         data: function() {
             return {
-                passedImageId: null,
-                imageData: []
+                imageData: [] //mounted function will populate this
             };
         },
         mounted: function() {
@@ -63,7 +62,45 @@
                 return this.$emit("clickedoutside");
             }
         },
-        template: "#modalSelector",
+        template: "#modalLayout",
+        props: ["id"]
+    });
+
+    Vue.component("comment-component", {
+        data: function() {
+            return {
+                commentForm: {
+                    comment: "",
+                    userName: "",
+                    image_id: ""
+                },
+                commentResponse: [] //data to be populated by uploadComments
+            };
+        },
+        mounted: function() {
+            console.log("COMMENTS MOUNTED!");
+            this.getComments();
+        },
+        methods: {
+            uploadComments: function(e) {
+                var self = this;
+                e.preventDefault();
+                this.commentForm.image_id = this.id;
+                axios
+                    .post("/post-comments", this.commentForm)
+                    .then(function(res) {
+                        console.log("COMMENT RESPONSE", res.data);
+                        self.commentResponse.unshift(res.data);
+                    });
+            },
+            getComments: function() {
+                var self = this;
+                axios.get("/all-image-comments/" + this.id).then(function(res) {
+                    self.commentResponse = res.data;
+                });
+            }
+        },
+        template: "#commentsLayout",
         props: ["id"]
     });
 })(); //closes IIFE

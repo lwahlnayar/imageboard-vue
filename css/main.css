@@ -47,10 +47,11 @@ div.modalOverlay {
 }
 
 div.modalWindow {
-    width: 60%;
-    height: 80%;
+    width: 70vh;
+    height: 80vh;
     border: black solid 1px;
     border-radius: 15px;
+    overflow-y: overlay;
 }
 
 .imageDiv {

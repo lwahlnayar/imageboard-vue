@@ -27,3 +27,24 @@ module.exports.saveOnlineImages = function(url, username, title, description) {
             return results.rows;
         });
 };
+
+module.exports.saveComments = function(image_id, username, comment) {
+    return db
+        .query(
+            `INSERT INTO comments (image_id, username, comment) VALUES ($1, $2, $3) RETURNING *`,
+            [image_id, username, comment]
+        )
+        .then(results => {
+            return results.rows;
+        });
+};
+
+module.exports.getComments = function(image_id) {
+    return db
+        .query(`SELECT * FROM comments WHERE image_id = $1 ORDER BY id DESC`, [
+            image_id
+        ])
+        .then(results => {
+            return results.rows;
+        });
+};
