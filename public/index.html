@@ -8,7 +8,7 @@
   <!-- //////////////MAIN VUE INSTANCE///////////////// -->
 <div id="main">
   <header>
-    
+
   </header>
   <form class="inputForm">
     <input v-model="form.title" type="text" name="title" placeholder="title">
@@ -18,9 +18,9 @@
     <button v-on:click="uploadImage" name="button">Upload</button>
   </form>
   <section class="allImagesContainer">
-    <div v-on:click="getImageId(eachImage.id)" class="imageContainer" v-for="eachImage in imageData"><img class="images" v-bind:src="eachImage.url" :alt="eachImage.title">
+    <a v-bind:href='"#" + eachImage.id' class="imageContainer" v-for="eachImage in imageData"><img class="images" v-bind:src="eachImage.url" :alt="eachImage.title">
       <p>{{eachImage.title}}</p>
-    </div>
+    </a>
   </section>
   <div id="moreButton" v-if="moreButton" v-on:click="getMoreImages">More</div>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->
@@ -60,7 +60,6 @@
           </div>
         </section>
       </form>
-
     </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

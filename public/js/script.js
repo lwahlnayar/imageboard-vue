@@ -1,4 +1,8 @@
 (function() {
+    window.addEventListener("hashchange", function(e) {
+        app.imageId = location.hash.slice(1);
+    });
+
     var app = new Vue({
         el: "#main",
         data: {
@@ -8,7 +12,7 @@
                 description: "",
                 userName: ""
             },
-            imageId: null,
+            imageId: location.hash.length > 1 && location.hash.slice(1), //hashed
             moreButton: false
         },
         mounted: function() {
@@ -17,7 +21,6 @@
         methods: {
             getImages: function() {
                 console.log("MOUNTED!");
-                // console.log("lastvisible id", lastImageId);
                 axios.get("/imagesdata").then(function(dataRes) {
                     app.imageData = dataRes.data.queryData;
                     var lastImageId =
@@ -25,7 +28,6 @@
                     if (lastImageId != dataRes.data.lastId) {
                         app.moreButton = true;
                     }
-                    //small bug: uploading image wont make more button appear
                 });
             },
             getMoreImages: function() {
@@ -61,10 +63,7 @@
             }, //closes uploadImage method
             exitModal: function() {
                 this.imageId = null;
-            },
-            getImageId: function(id) {
-                console.log(id);
-                app.imageId = id;
+                location.hash = "";
             }
         } //closes all methods
     }); //closes main Vue instance
@@ -80,7 +79,6 @@
         mounted: function() {
             var self = this;
             axios.get("/clickedimage/" + this.id).then(function(res) {
-                console.log(res.data);
                 self.imageData = res.data;
             });
         },
