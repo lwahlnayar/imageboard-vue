@@ -12,18 +12,22 @@
             moreButton: false
         },
         mounted: function() {
-            console.log("MOUNTED!");
-            // console.log("lastvisible id", lastImageId);
-            axios.get("/imagesdata").then(function(dataRes) {
-                app.imageData = dataRes.data.queryData;
-                var lastImageId = app.imageData[app.imageData.length - 1].id;
-                if (lastImageId != dataRes.data.lastId) {
-                    app.moreButton = true;
-                }
-                //small bug: uploading image wont make more button appear
-            });
+            this.getImages();
         },
         methods: {
+            getImages: function() {
+                console.log("MOUNTED!");
+                // console.log("lastvisible id", lastImageId);
+                axios.get("/imagesdata").then(function(dataRes) {
+                    app.imageData = dataRes.data.queryData;
+                    var lastImageId =
+                        app.imageData[app.imageData.length - 1].id;
+                    if (lastImageId != dataRes.data.lastId) {
+                        app.moreButton = true;
+                    }
+                    //small bug: uploading image wont make more button appear
+                });
+            },
             getMoreImages: function() {
                 var lastImageId = this.imageData[this.imageData.length - 1].id;
                 console.log("moreButton pressed! lastimgId", lastImageId);
@@ -50,6 +54,9 @@
                 axios.post("/uploads", formData).then(function(res) {
                     console.log("RESPONSE IN POST/UPLOAD: ", res);
                     app.imageData.unshift(res.data.imageData); //RESPONSE
+                    if (app.imageData.length % 5 != 0) {
+                        app.imageData.pop();
+                    }
                 });
             }, //closes uploadImage method
             exitModal: function() {

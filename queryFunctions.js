@@ -5,7 +5,7 @@ const db = spicedPg(require("./secrets.json").url);
 
 module.exports.getImagesData = function() {
     return db
-        .query(`SELECT * FROM images ORDER BY id DESC LIMIT 2;`)
+        .query(`SELECT * FROM images ORDER BY id DESC LIMIT 5;`)
         .then(results => {
             return results.rows;
         });
@@ -13,7 +13,7 @@ module.exports.getImagesData = function() {
 
 module.exports.getMoreImages = function(lastId) {
     return db
-        .query(`SELECT * FROM images WHERE id < $1 ORDER BY id DESC LIMIT 2;`, [
+        .query(`SELECT * FROM images WHERE id < $1 ORDER BY id DESC LIMIT 5;`, [
             lastId
         ])
         .then(results => {
