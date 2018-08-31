@@ -15,6 +15,12 @@ header {
     background: rgba(0, 128, 128, 0.8);
 }
 
+#logo {
+    background: transparent;
+    width: 500px;
+    height: 100px;
+}
+
 .allImagesContainer {
     display: flex;
     flex-wrap: wrap;

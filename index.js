@@ -88,10 +88,15 @@ app.post("/uploads", uploader.single("file"), uploadS3, (req, res) => {
 });
 
 app.get("/clickedimage/:id", (req, res) => {
-    getImageData(req.params.id).then(imageId => {
-        // console.log("GET RESPONSE WITH IMG DATA:", imageId);
-        res.json(imageId[0]); //sends pure object with all image data
-    });
+    getImageData(req.params.id)
+        .then(images => {
+            // console.log("GET RESPONSE WITH IMG DATA:", imageId);
+            res.json(images[0]); //sends pure object with all image data
+        })
+        .catch(e => {
+            console.log(e);
+            res.json();
+        });
 });
 
 app.get("/all-image-comments/:id", (req, res) => {
@@ -103,6 +108,7 @@ app.get("/all-image-comments/:id", (req, res) => {
         })
         .catch(e => {
             console.log("ERROR--->", e);
+            res.sendStatus(500);
         });
 });
 
