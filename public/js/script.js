@@ -47,7 +47,6 @@
                 axios
                     .post("/post-comments", this.commentForm)
                     .then(function(res) {
-                        console.log("COMMENT RESPONSE", res.data);
                         self.commentResponse.unshift(res.data);
                     });
             },
