@@ -5,23 +5,36 @@
     padding: 0;
 }
 
+body {
+    font-family: "Work Sans", sans-serif;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
 div#main {
     position: relative;
 }
 
 header {
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    height: 200px;
-    background: rgba(0, 128, 128, 0.8);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 290px;
+    background: rgba(0, 128, 128, 1);
 }
 
 #inputDiv {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 75px;
     background: rgba(50, 205, 50, 0.7);
 }
 
@@ -29,13 +42,50 @@ header {
     background: transparent;
 }
 
+.inputForm input {
+    border: 1px solid darkslategray;
+    height: 35px;
+    border-radius: 5px;
+    padding: 0px 5px;
+    font-size: 1rem;
+}
+
+#fileButton {
+    background: transparent;
+    border: none;
+    height: 18px;
+    width: 240px;
+}
+
+.inputForm button {
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background: gray;
+    color: whitesmoke;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.inputForm button:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
 #logo {
     background: transparent;
     width: 500px;
     height: 100px;
+    transform: translateY(50px);
 }
 
 .allImagesContainer {
+    margin: 30px;
+    margin-top: 35px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -45,9 +95,8 @@ header {
 }
 
 .imageContainer {
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 15px;
+    text-decoration: none;
 }
 
 .imageContainer:hover {
@@ -57,7 +106,6 @@ header {
 img.images {
     width: 400px;
     height: 400px;
-    /*     object-fit: contain; */
     max-width: 400px;
     max-height: 300px;
     border: black 1px solid;
@@ -71,7 +119,7 @@ a.imageContainer p {
 #moreButton {
     position: relative;
     margin: 0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     background: gray;
     color: white;
     font-size: 20px;
@@ -84,9 +132,9 @@ a.imageContainer p {
 
 #moreButton:hover {
     transition: all 0.3s ease;
-    -webkit-transform: scale(1.3);
-    -ms-transform: scale(1.3);
-    transform: scale(1.3);
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
     cursor: pointer;
 }
 
