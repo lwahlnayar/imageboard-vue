@@ -13,9 +13,18 @@
       <img id="logo" src="/logo.png" alt="vuetiful pix">
       <section id="inputDiv">
         <form class="inputForm">
-          <input v-model="form.title" type="text" name="title" placeholder="title">
-          <input v-model="form.description" type="text" name="description" placeholder="description">
-          <input v-model="form.userName" type="text" name="userName" placeholder="name">
+          <div class="inputHolder">
+            <p>*Title</p>
+            <input v-model="form.title" type="text" name="title" placeholder="title">
+          </div>
+          <div class="inputHolder">
+            <p>*Description</p>
+            <input v-model="form.description" type="text" name="description" placeholder="description">
+          </div>
+          <div class="inputHolder">
+            <p>*Username</p>
+            <input v-model="form.userName" type="text" name="userName" placeholder="name">
+          </div>
           <input id="fileButton" type="file" accept="image/*">
           <button v-on:click="uploadImage" name="button">Upload</button>
         </form>
@@ -26,7 +35,9 @@
         <p>{{eachImage.title}}</p>
       </a>
     </section>
-    <div id="moreButton" v-if="moreButton" v-on:click="getMoreImages">More</div>
+    <div class="moreButtonContainer">
+      <div id="moreButton" v-if="moreButton" v-on:click="getMoreImages">More</div>
+    </div>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->
   <image-modal v-if="imageId" v-bind:id="imageId" v-on:clickedoutside="exitModal"></image-modal>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->

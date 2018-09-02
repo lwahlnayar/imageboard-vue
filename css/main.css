@@ -26,7 +26,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 290px;
-    background: rgba(0, 128, 128, 1);
+    background: darkslategray;
 }
 
 #inputDiv {
@@ -35,11 +35,28 @@ header {
     align-items: center;
     justify-content: center;
     height: 75px;
-    background: rgba(50, 205, 50, 0.7);
+    background: darkseagreen;
 }
 
 .inputForm {
     background: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.inputHolder {
+    background: transparent;
+    height: 50px;
+    margin-left: 5px;
+    transform: translateY(-7px);
+}
+
+.inputHolder p {
+    background: transparent;
+    font-size: 0.85rem;
+    font-style: oblique;
+    padding-left: 2px;
 }
 
 .inputForm input {
@@ -78,42 +95,54 @@ header {
 
 #logo {
     background: transparent;
-    width: 500px;
+    max-width: 500px;
     height: 100px;
     transform: translateY(50px);
 }
 
 .allImagesContainer {
-    margin: 30px;
+    margin: 50px;
+    margin-bottom: 30px;
     margin-top: 35px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-content: space-between;
     max-width: 100%;
     max-height: 100%;
 }
 
 .imageContainer {
-    margin: 15px;
+    margin: 10px;
     text-decoration: none;
 }
 
 .imageContainer:hover {
     cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-transform: scale(1.035);
+    -ms-transform: scale(1.035);
+    transform: scale(1.035);
 }
 
 img.images {
-    width: 400px;
-    height: 400px;
-    max-width: 400px;
-    max-height: 300px;
+    height: 300px;
+    width: 300px;
     border: black 1px solid;
+    border-radius: 5px;
 }
 
 a.imageContainer p {
     font-size: 20px;
+    max-width: 300px;
     text-align: center;
+}
+
+div.moreButtonContainer {
+    max-width: 100%;
+    height: 75px;
+    background: darkseagreen;
+    padding-top: 20px;
 }
 
 #moreButton {
@@ -140,7 +169,7 @@ a.imageContainer p {
 
 footer {
     height: 40px;
-    background: rgba(0, 128, 128, 0.8);
+    background: darkslategray;
     color: whitesmoke;
     padding-top: 11px;
     padding-left: 5px;
@@ -195,4 +224,85 @@ p#modalDate {
     font-size: 8px;
     font-style: italic;
     margin-top: 3px;
+}
+
+@media (max-width: 960px) {
+    header {
+        height: 370px;
+    }
+    #inputDiv {
+        height: 120px;
+    }
+    .inputForm {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 740px) {
+    .allImagesContainer {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    img.images {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+@media (max-width: 640px) {
+    header {
+        height: 370px;
+    }
+    #inputDiv {
+        height: 160px;
+    }
+    .allImagesContainer {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    img.images {
+        height: 200px;
+        width: 200px;
+    }
+    .inputForm {
+        width: 470px;
+        justify-content: flex-start;
+        transform: translateX(20px);
+    }
+}
+
+@media (max-width: 445px) {
+    header {
+        height: 420px;
+    }
+    #inputDiv {
+        height: 250px;
+    }
+    .inputForm {
+        justify-content: center;
+        transform: translateX(0px);
+    }
+    #logo {
+        width: 280px;
+    }
+    img.images {
+        height: 300px;
+        width: 300px;
+    }
+    .inputForm {
+        justify-content: center;
+        width: 120px;
+    }
+    #fileButton {
+        width: 120px;
+    }
+    .inputForm button {
+        transform: translateY(15px);
+    }
+}
+
+@media (max-width: 290px) {
+    #logo {
+        width: 200px;
+    }
 }
