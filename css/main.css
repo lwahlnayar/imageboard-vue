@@ -59,7 +59,7 @@ header {
     padding-left: 2px;
 }
 
-.inputForm input {
+input {
     border: 1px solid darkslategray;
     height: 35px;
     border-radius: 5px;
@@ -190,8 +190,8 @@ div.modalOverlay {
 }
 
 div.modalWindow {
-    width: 70vh;
-    height: 80vh;
+    width: 90vh;
+    height: 90vh;
     border: black solid 1px;
     border-radius: 15px;
     overflow-y: overlay;
@@ -219,11 +219,63 @@ h2#modalDescription {
     margin-top: 3px;
 }
 
+div.modalOverlay h3 {
+    background: transparent;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
 p#modalDate {
     text-align: center;
     font-size: 8px;
     font-style: italic;
     margin-top: 3px;
+}
+
+.modalInputContainer {
+    background: darkseagreen;
+    max-width: 100%;
+    margin-top: 5px;
+    padding-top: 2px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+}
+
+.flexModalInput {
+    display: flex;
+    background: transparent;
+}
+
+div.modalOverlay button {
+    margin-left: 5px;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background: gray;
+    color: whitesmoke;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+div.modalOverlay button:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+div.modalOverlay .commentsContainer {
+    padding-left: 15px;
+}
+
+div.modalOverlay .commentDiv:first-child {
+    margin-top: 20px;
+}
+
+div.modalOverlay .commentDiv {
+    margin-top: 10px;
 }
 
 @media (max-width: 960px) {

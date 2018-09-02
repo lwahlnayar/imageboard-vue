@@ -55,7 +55,6 @@
           <h1 id="modalTitle">{{imageData.title}}</h1>
           <h2 id="modalDescription">{{imageData.description}}</h2>
           <p id="modalDate">{{imageData.created_at}}</p>
-          <h3>Add a Comment!</h3>
           <!-- __________ COMMENT MODAL COMPONENT __________ -->
           <comment-component v-bind:id="id"></comment-component>
           <!-- __________ COMMENT MODAL COMPONENT __________ -->
@@ -65,9 +64,20 @@
 
     <script id="commentsLayout" type="text/x-template">
       <form class="commentForm">
-        <input v-model="commentForm.comment" type="text" name="description" placeholder="comment">
-        <input v-model="commentForm.userName" type="text" name="userName" placeholder="name">
-        <button v-on:click="uploadComments" name="button">Post</button>
+        <div class="modalInputContainer">
+        <h3>Add a Comment!</h3>
+        <div class="flexModalInput">
+          <div class="inputHolder">
+            <p>*Comment</p>
+            <input v-model="commentForm.comment" type="text" name="description" placeholder="comment">
+          </div>
+          <div class="inputHolder">
+            <p>*Username</p>
+            <input v-model="commentForm.userName" type="text" name="userName" placeholder="name">
+          </div>
+        </div>  
+          <button v-on:click="uploadComments" name="button">Post</button>
+        </div>
         <section class="commentsContainer">
           <!-- <p>{{commentResponse}}</p> -->
           <div class="commentDiv" v-for="eachComment in commentResponse">
