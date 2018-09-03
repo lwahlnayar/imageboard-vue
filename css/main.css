@@ -47,9 +47,8 @@ header {
 
 .inputHolder {
     background: transparent;
-    height: 50px;
     margin-left: 5px;
-    transform: translateY(-7px);
+    transform: translateY(-13px);
 }
 
 .inputHolder p {
@@ -225,6 +224,10 @@ div.modalOverlay h3 {
     margin-bottom: 10px;
 }
 
+div.modalOverlay .inputHolder {
+    height: 50px;
+}
+
 p#modalDate {
     text-align: center;
     font-size: 8px;
@@ -320,7 +323,7 @@ strong {
         height: 370px;
     }
     #inputDiv {
-        height: 160px;
+        height: 190px;
     }
     .allImagesContainer {
         margin-left: 0px;
@@ -359,10 +362,10 @@ strong {
 
 @media (max-width: 445px) {
     header {
-        height: 420px;
+        height: 500px;
     }
     #inputDiv {
-        height: 250px;
+        height: 330px;
     }
     .inputForm {
         justify-content: center;
