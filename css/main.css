@@ -190,8 +190,8 @@ div.modalOverlay {
 }
 
 div.modalWindow {
-    width: 90vh;
-    height: 90vh;
+    width: 80%;
+    height: 85%;
     border: black solid 1px;
     border-radius: 15px;
     overflow-y: overlay;
@@ -256,6 +256,7 @@ div.modalOverlay button {
     color: whitesmoke;
     font-size: 1rem;
     font-weight: bold;
+    margin-top: 20px;
 }
 
 div.modalOverlay button:hover {
@@ -271,11 +272,24 @@ div.modalOverlay .commentsContainer {
 }
 
 div.modalOverlay .commentDiv:first-child {
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
-div.modalOverlay .commentDiv {
-    margin-top: 10px;
+div.modalOverlay .commentDiv:last-child {
+    padding-bottom: 20px;
+}
+
+div.modalOverlay .commentDiv,
+p,
+span,
+strong {
+    color: whitesmoke;
+    padding-top: 15px;
+    background-color: transparent;
+}
+
+.commentsContainer {
+    background: darkslategray;
 }
 
 @media (max-width: 960px) {
@@ -320,6 +334,26 @@ div.modalOverlay .commentDiv {
         width: 470px;
         justify-content: flex-start;
         transform: translateX(20px);
+    }
+}
+
+@media (max-width: 557px) {
+    div.modalOverlay h3 {
+        margin-top: 15px;
+        margin-left: 10px;
+    }
+    .modalInputContainer {
+        height: 220px;
+    }
+    .flexModalInput {
+        display: flex;
+        flex-direction: column;
+    }
+    .inputHolder {
+        margin-top: 5px;
+    }
+    div.modalOverlay button {
+        margin-top: 18px;
     }
 }
 
