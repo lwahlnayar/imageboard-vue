@@ -6,6 +6,8 @@
             };
         },
         mounted: function() {
+            var body = document.getElementById("body");
+            body.classList.add("bodyNoOverflow");
             var header = document.getElementById("mainHeader");
             header.classList.add("mainHeaderBlurred");
             var allImages = document.getElementById("allImages");
@@ -130,6 +132,8 @@
                 });
             }, //closes uploadImage method
             exitModal: function() {
+                var body = document.getElementById("body");
+                body.classList.remove("bodyNoOverflow");
                 var header = document.getElementById("mainHeader");
                 header.classList.remove("mainHeaderBlurred");
                 var allImages = document.getElementById("allImages");
