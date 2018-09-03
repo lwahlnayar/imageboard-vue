@@ -54,7 +54,7 @@
           </div>
           <h1 id="modalTitle">{{imageData.title}}</h1>
           <h2 id="modalDescription">{{imageData.description}}</h2>
-          <p id="modalDate">{{imageData.created_at}}</p>
+          <p id="modalDate">{{dateFormat(imageData.created_at)}}</p>
           <!-- __________ COMMENT MODAL COMPONENT __________ -->
           <comment-component v-bind:id="id"></comment-component>
           <!-- __________ COMMENT MODAL COMPONENT __________ -->
@@ -81,7 +81,7 @@
         <section class="commentsContainer">
           <!-- <p>{{commentResponse}}</p> -->
           <div class="commentDiv" v-for="eachComment in commentResponse">
-            <p><strong>{{eachComment.username}}</strong> <span class="timeOfPost">{{eachComment.created_at}}</span></p>
+            <p><strong>{{eachComment.username}}</strong> <span class="timeOfPost">{{dateFormat(eachComment.created_at)}}</span></p>
             <p>{{eachComment.comment}}</p>
           </div>
         </section>

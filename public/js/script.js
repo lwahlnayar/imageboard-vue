@@ -1,4 +1,27 @@
 (function() {
+    var monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec"
+    ];
+    var digitFix = function(digit) {
+        var d = digit.toString();
+        if (d.length == 1) {
+            return "0" + d;
+        } else {
+            return digit;
+        }
+    };
+
     Vue.component("image-modal", {
         data: function() {
             return {
@@ -28,6 +51,18 @@
         methods: {
             overlayClick: function() {
                 return this.$emit("clickedoutside");
+            },
+            dateFormat: function(date) {
+                var d = new Date(date);
+                var dateString =
+                    monthNames[d.getMonth()] +
+                    " " +
+                    d.getFullYear() +
+                    ", " +
+                    digitFix(d.getHours()) +
+                    ":" +
+                    digitFix(d.getMinutes());
+                return dateString;
             }
         },
         template: "#modalLayout",
@@ -65,6 +100,18 @@
                 axios.get("/all-image-comments/" + this.id).then(function(res) {
                     self.commentResponse = res.data;
                 });
+            },
+            dateFormat: function(date) {
+                var d = new Date(date);
+                var dateString =
+                    monthNames[d.getMonth()] +
+                    " " +
+                    d.getFullYear() +
+                    ", " +
+                    digitFix(d.getHours()) +
+                    ":" +
+                    digitFix(d.getMinutes());
+                return dateString;
             }
         },
         template: "#commentsLayout",
