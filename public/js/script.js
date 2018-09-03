@@ -6,6 +6,14 @@
             };
         },
         mounted: function() {
+            var header = document.getElementById("mainHeader");
+            header.classList.add("mainHeaderBlurred");
+            var allImages = document.getElementById("allImages");
+            allImages.classList.add("allImagesBlurred");
+            var moreButtonId = document.getElementById("moreButtonId");
+            moreButtonId.classList.add("moreButtonBlurred");
+            var footer = document.getElementById("footer");
+            footer.classList.add("footerBlurred");
             var self = this;
             axios.get("/clickedimage/" + this.id).then(function(res) {
                 self.imageData = res.data;
@@ -122,6 +130,14 @@
                 });
             }, //closes uploadImage method
             exitModal: function() {
+                var header = document.getElementById("mainHeader");
+                header.classList.remove("mainHeaderBlurred");
+                var allImages = document.getElementById("allImages");
+                allImages.classList.remove("allImagesBlurred");
+                var moreButtonId = document.getElementById("moreButtonId");
+                moreButtonId.classList.remove("moreButtonBlurred");
+                var footer = document.getElementById("footer");
+                footer.classList.remove("footerBlurred");
                 this.imageId = null;
                 location.hash = "";
             }

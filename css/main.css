@@ -295,6 +295,17 @@ strong {
     background: darkslategray;
 }
 
+.mainHeaderBlurred,
+.allImagesBlurred,
+.moreButtonBlurred,
+.footerBlurred {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
 @media (max-width: 960px) {
     header {
         height: 370px;

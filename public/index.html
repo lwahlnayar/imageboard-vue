@@ -9,7 +9,7 @@
 <body>
   <!-- //////////////MAIN VUE INSTANCE///////////////// -->
   <div id="main">
-    <header>
+    <header id="mainHeader">
       <img id="logo" src="/logo.png" alt="vuetiful pix">
       <section id="inputDiv">
         <form class="inputForm">
@@ -30,18 +30,18 @@
         </form>
       </section>
     </header>
-    <section class="allImagesContainer">
+    <section class="allImagesContainer" id="allImages">
       <a v-bind:href='"#" + eachImage.id' class="imageContainer" v-for="eachImage in imageData"><img class="images" v-bind:src="eachImage.url" :alt="eachImage.title">
         <p>{{eachImage.title}}</p>
       </a>
     </section>
-    <div class="moreButtonContainer">
+    <div class="moreButtonContainer" id="moreButtonId">
       <div id="moreButton" v-if="moreButton" v-on:click="getMoreImages">More</div>
     </div>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->
   <image-modal v-if="imageId" v-bind:id="imageId" v-on:clickedoutside="exitModal"></image-modal>
   <!-- __________ IMAGE MODAL COMPONENT __________ -->
-  <footer>Random Developer &copy;</footer>
+  <footer id="footer">Random Developer &copy;</footer>
   </div>
 
   <!-- //////////////SCRIPT TEMPLATES BELOW///////////////// -->
@@ -75,7 +75,7 @@
             <p>*Username</p>
             <input v-model="commentForm.userName" type="text" name="userName" placeholder="name">
           </div>
-        </div>  
+        </div>
           <button v-on:click="uploadComments" name="button">Post</button>
         </div>
         <section class="commentsContainer">
