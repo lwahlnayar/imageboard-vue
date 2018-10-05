@@ -1,7 +1,7 @@
 const spicedPg = require("spiced-pg");
 
 //Makes connection from server to database
-const db = spicedPg(require("./secrets.json").url);
+const db = spicedPg(process.env.DATABASE_URL || require("./secrets.json").url);
 
 module.exports.getImagesData = function() {
     return db
